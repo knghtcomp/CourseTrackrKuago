@@ -6,18 +6,21 @@ export const StudentDashboardHeaderSection = () => {
   const location = useLocation();
 
   // Determine active state based on the current URL path
-  // If the path is /tracker, it's yellow. Otherwise, Dashboard is yellow.
-  const isActive = location.pathname === '/tracker' ? 'tracker' : 'dashboard';
+  const isActive = location.pathname.includes('tracker') 
+    ? 'tracker' 
+    : location.pathname.includes('history') 
+    ? 'history' 
+    : 'dashboard';
 
   return (
     <header className="w-full h-[90px] bg-[#003366] flex items-center relative shadow-lg z-50">
       <div className="w-full max-w-[1440px] mx-auto flex items-center px-4 lg:px-6 h-full">
         
-        {/* GROUP 1: Branding + Left Nav */}
+        {/* GROUP 1: Branding + Navigation Links */}
         <div className="flex flex-row items-center -ml-6 lg:-ml-8 gap-6 lg:gap-10">
           
           {/* Logo & Text */}
-          <div className="flex flex-row items-center">
+          <div className="flex flex-row items-center cursor-pointer" onClick={() => navigate('/dashboard')}>
             <img 
               src="/logo.svg" 
               alt="Logo" 
@@ -33,8 +36,8 @@ export const StudentDashboardHeaderSection = () => {
             </div>
           </div>
 
-          {/* Nav Buttons with Conditional Coloring */}
-          <div className="flex items-center gap-3 lg:gap-4">
+          {/* Nav Buttons Container */}
+          <div className="flex items-center gap-2 lg:gap-4">
             
             {/* DASHBOARD BUTTON */}
             <button 
@@ -48,10 +51,10 @@ export const StudentDashboardHeaderSection = () => {
               <img 
                 src="/dashboard.svg" 
                 alt="" 
-                className={`w-5 h-5 shrink-0 ${isActive === 'dashboard' ? '' : 'brightness-0 invert'}`} 
+                className={`w-4 h-4 lg:w-5 lg:h-5 shrink-0 ${isActive === 'dashboard' ? '' : 'brightness-0 invert'}`} 
               />
-              <span className="text-[14px] lg:text-[15px] font-normal font-['Croissant_One'] whitespace-nowrap">
-                DASHBOARD
+              <span className="text-[13px] lg:text-[15px] font-normal font-['Croissant_One'] whitespace-nowrap">
+                Dashboard
               </span>
             </button>
 
@@ -67,23 +70,42 @@ export const StudentDashboardHeaderSection = () => {
               <img 
                 src="/trackr.svg" 
                 alt="" 
-                className={`w-5 h-5 shrink-0 ${isActive === 'tracker' ? '' : 'brightness-0 invert'}`} 
+                className={`w-4 h-4 lg:w-5 lg:h-5 shrink-0 ${isActive === 'tracker' ? '' : 'brightness-0 invert'}`} 
               />
-              <span className="text-[14px] lg:text-[15px] font-normal font-['Croissant_One'] whitespace-nowrap">
-                TRACKER
+              <span className="text-[13px] lg:text-[15px] font-normal font-['Croissant_One'] whitespace-nowrap">
+                Tracker
+              </span>
+            </button>
+
+            {/* ACADEMIC HISTORY BUTTON (NEW) */}
+            <button 
+              onClick={() => navigate('/history')}
+              className={`flex items-center gap-2 px-4 h-9 rounded-lg transition-all shadow-md ${
+                isActive === 'history' 
+                ? 'bg-[#FFCC00] text-black hover:brightness-110' 
+                : 'bg-[#004080] text-white hover:bg-[#0050a0]'
+              }`}
+            >
+              <img 
+                src="/academichistory.svg" 
+                alt="" 
+                className={`w-4 h-4 lg:w-5 lg:h-5 shrink-0 ${isActive === 'history' ? '' : 'brightness-0 invert'}`} 
+              />
+              <span className="text-[13px] lg:text-[15px] font-normal font-['Croissant_One'] whitespace-nowrap">
+                Academic History
               </span>
             </button>
           </div>
         </div>
 
-        {/* LOGOUT (Always Navy) */}
+        {/* GROUP 2: LOGOUT (Pinned to right edge) */}
         <div className="ml-auto">
           <button 
             onClick={() => navigate('/')}
             className="flex items-center gap-2 px-4 h-9 bg-[#004080] text-white rounded-lg hover:bg-red-900 transition-all group shadow-md"
           >
-            <img src="/logout.svg" alt="" className="w-5 h-5 shrink-0 brightness-0 invert group-hover:brightness-200 transition-all" />
-            <span className="group-hover:text-white text-[14px] lg:text-[15px] font-normal font-['Croissant_One'] whitespace-nowrap">
+            <img src="/logout.svg" alt="" className="w-4 h-4 lg:w-5 lg:h-5 shrink-0 brightness-0 invert group-hover:brightness-200 transition-all" />
+            <span className="group-hover:text-white text-[13px] lg:text-[15px] font-normal font-['Croissant_One'] whitespace-nowrap">
               Logout
             </span>
           </button>

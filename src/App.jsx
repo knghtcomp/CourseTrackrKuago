@@ -4,6 +4,9 @@ import SignUpStudent from './pages/SignUp';
 import ForgotPassword from './pages/ForgotPassword';
 import RegistrationSuccess from './pages/RegistrationSuccess';
 import DashBoard from './pages/DashBoard/Dashboard';
+import Tracker from './pages/Tracker';
+import AcademicHistory  from './pages/AcademicHistory';
+import Setup from './pages/Setup';
 
 
 function App() {
@@ -15,6 +18,9 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/success" element={<RegistrationSuccess />} />
         <Route path="/dashboard" element={<DashBoard />} />
+        <Route path="/tracker" element={<Tracker />} />
+        <Route path="/history" element={<AcademicHistory />} />
+        <Route path="/setup" element={<Setup />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
